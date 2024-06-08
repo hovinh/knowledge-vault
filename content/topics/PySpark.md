@@ -47,3 +47,56 @@ Read parquet file with Spark
 ```
 spark_df = spark.read.parquet(s3_file_path)
 ```
+
+Create Hive table with Spark
+```python
+def create_table(spark, table_location, table_name, list_of_tuple, db_name, partition_col=None):
+    if partition_col:
+        prt_col = ",".join(f"`{x[0]}` {x[1]}" for x in list_of_tuple if x[0] == partition_col)
+        columns = ",".join(f"`{x[0]}` {x[1]}" for x in list_of_tuple if x[0] != partition_col)
+        create_table_stmt = f"""
+            CREATE EXTERNAL TABLE IF NOT EXISTS {db_name}.{table_name} ({columns})
+            PARTITIONED BY ({prt_col})
+            STORED AS PARQUET
+            LOCATION `{table_location}`
+        """
+    else:
+        columns = ",".join(f"`{x[0]}` {x[1]}" for x in list_of_tuple)
+        create_table_stmt = f"""
+            CREATE EXTERNAL TABLE IF NOT EXISTS {db_name}.{table_name} ({columns})
+            STORED AS PARQUET
+            LOCATION `{table_location}`
+        """
+
+    print (create_table_stmt)
+    spark.sql(create_table_stmt)
+```
+
+
+Read Hive table with Spark & Presto connection via JDBC
+```python
+jdbc_properties = {
+    "user": user_name, 
+    "password": password,
+    "driver": "io.trino.jdbc.TrinoDriver",
+    "SSL": "true",
+    }
+df_jdbc = spark.read.jdbc(
+    url=jdbc_url,
+    table=hive_table,
+    properties=jdbc_properties,
+)
+df_jdbc.show()
+```
+
+
+
+#### Common Issues
+
+| Issue | Solution |
+| -------- | -------- |
+| `Kryo serialization failed: Buffer overflow. Available: 0...`| Increase `spark.kryoserializer.buffer.max` value|
+| | Try a different cluster|
+| Data skew that pushed the limit of one core| `df =  df.repartition(5, "column")`|
+| | `df =  df.withColumn("salt", F.rand()` then repartition|
+| Slow table loading and be used multiple times | `df.persist()` or `df.cache()`|

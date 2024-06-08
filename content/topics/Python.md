@@ -25,6 +25,11 @@ source <env-name>/bin/activate
 # conda
 ```
 
+Troubleshooting in script execution
+```python
+from IPython import embed; embed()
+```
+
 Package Note
 | Command | Description |
 | -------- | -------- |
