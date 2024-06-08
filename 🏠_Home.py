@@ -2,7 +2,7 @@ import streamlit as st
 from logzero import logger
 import os
 
-from utils.web import (
+from src.utils.web import (
     display_topic_buttons,
     get_TopicPageManager,
     is_first_web_load,
