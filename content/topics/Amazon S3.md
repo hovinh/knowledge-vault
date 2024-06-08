@@ -2,6 +2,7 @@
 
 List files in S3 bucket
 ```python
+# boto3 solution
 import boto3
 session = boto3.session.Session()
 s3_client = session.client(
@@ -17,6 +18,8 @@ c = s3_client.list_objects_v2(Bucket='sg....', Prefix='folder/path/')
 Download files from S3 bucket
 ```python
 s3_client.download_file(BUCKET_NAME, s3_filepath, local_filepath)
+
+
 ```
 
 Upload files to S3 bucket
