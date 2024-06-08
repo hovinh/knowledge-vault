@@ -1,6 +1,5 @@
 import streamlit as st
 from typing import Any, Dict, List, Tuple
-import yaml
 import os
 from dataclasses import dataclass
 from logzero import logger
@@ -135,12 +134,6 @@ def load_markdown_file_content(file_path: str) -> str:
     with open(file_path, "r") as file:
         content = file.read()
     return content
-
-
-def load_yaml(yaml_file_path: str) -> Dict:
-    with open(yaml_file_path, "r", encoding="utf-8") as file:
-        data = yaml.safe_load(file)
-    return data
 
 
 def get_file_paths_from_folder(folder_path: str):
