@@ -1,7 +1,7 @@
 import os
 from dataclasses import dataclass
 
-from utils.data import load_markdown_file_content
+from src.utils.data import load_markdown_file_content
 
 
 @dataclass

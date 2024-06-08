@@ -3,8 +3,8 @@ from typing import Any, Dict, List, Tuple
 import os
 from logzero import logger
 
-from topic_page import TopicPage, TopicPageManager
-from utils.data import get_file_paths_from_folder, load_markdown_file_content
+from src.topic_page import TopicPage, TopicPageManager
+from src.utils.data import get_file_paths_from_folder, load_markdown_file_content
 
 MARKDOWN_FOLDER = os.path.join("content", "topics")
 MAX_NUMB_TOPICS_PER_ROW = 5
