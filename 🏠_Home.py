@@ -2,7 +2,6 @@ import streamlit as st
 from logzero import logger
 import os
 
-from utils.data import load_markdown_file_content
 from utils.web import (
     display_topic_buttons,
     get_TopicPageManager,
