@@ -1,0 +1,15 @@
+/data
+*.csv
+*.html
+*.zip
+*.pkl
+*.npz
+*.pyc
+__pycache__
+*.ipynb_checkpoints*
+.vscode
+logs
+data
+.nfs*
+*.pub
+*.swp
