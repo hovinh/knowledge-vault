@@ -1,10 +1,14 @@
 import streamlit as st
 from src.st.utils import (
-    load_yaml,
-    generate_topic_pages_info_list_from_pages_folder,
-    display_topic_shortcuts,
+    get_TopicPageManager,
+    display_topic_buttons,
     write_line_break,
+    load_markdown_file_content,
+    get_variable_in_session_state,
+    update_clicked_button_state,
 )
+from logzero import logger
+import os
 
 ### SET PAGE CONFIG AND LOAD RELEVANT CONFIG FILES
 st.set_page_config(
@@ -15,88 +19,36 @@ st.set_page_config(
         "About": "# this is a header. This is a cool app!",
     },
 )
-page_name_to_topic_page_map, topic_page_list = (
-    generate_topic_pages_info_list_from_pages_folder()
-)
-if "page_name_to_topic_page_map" not in st.session_state:
-    st.session_state.page_name_to_topic_page_map = page_name_to_topic_page_map
+topic_page_manager = get_TopicPageManager()
+all_pages = topic_page_manager.get_page_list()
+displayed_pages = st.session_state.get("displayed_pages", all_pages)
 
-# ### PAGE CONTENT
+intro_markdown_file_path = os.path.join("content", "intro.md")
+
+logger.info(f"All pages: {all_pages}")
+logger.info(f"Displayed pages: {displayed_pages}")
+
+### PAGE CONTENT
 st.title("Knowledge Vault")
-intro = """
----
-Welcome to **Knowledge Vault** - my personal library of knowledge, providing a reference point for my own learning journey 
-in Machine Learning and Software Engineering.
+st.markdown(load_markdown_file_content(intro_markdown_file_path))
 
-It's a space to explore, discover, and reflect on the concepts and techniques I have learned along the way.
-
----
-"""
-st.markdown(intro)
-
-st.markdown("Topic shortcuts")
-topic_page_is_clicked_dict = display_topic_shortcuts(topic_page_list)
-for topic_page, is_clicked in topic_page_is_clicked_dict.items():
-    if is_clicked:
-        st.switch_page(topic_page.url)
-
-write_line_break(numb_lines=1)
-search_text = st.text_input("Enter your search query:")
-
+search_text = st.text_input("Enter your search query:", key="search-bar")
 if search_text != "":
     st.markdown("Feature is not available yet.")
+write_line_break()
 
+st.markdown("Topics")
+page_isClicked_mapping = display_topic_buttons(displayed_pages)
+prev_clicked_button = get_variable_in_session_state("prev_clicked_button")
+cur_clicked_button = get_variable_in_session_state("cur_clicked_button")
+logger.info(f"prev_clicked_button: {prev_clicked_button}")
+logger.info(f"cur_clicked_button: {cur_clicked_button}")
 
-# import streamlit as st
-
-
-# # Define subpages as functions
-# def home():
-#     st.title("Home Page")
-#     st.write("Welcome to the home page!")
-
-
-# def about():
-#     st.title("About Page")
-#     st.write("Welcome to the about page!")
-
-
-# def contact():
-#     st.title("Contact Page")
-#     st.write("Welcome to the contact page!")
-
-
-# # Mapping of subpage names to functions
-# pages = {
-#     "Home": home,
-#     "About": about,
-#     "Contact": contact,
-# }
-
-
-# # Function to handle navigation
-# def navigate():
-#     query_params = st.experimental_get_query_params()
-#     subpage = query_params.get("subpage", ["Home"])[0]
-
-#     if subpage in pages:
-#         st.session_state.current_page = subpage
-#     else:
-#         st.session_state.current_page = "Home"
-
-#     # Render the selected subpage
-#     pages[st.session_state.current_page]()
-
-
-# # Sidebar for navigation
-# st.sidebar.title("Navigation")
-# selection = st.sidebar.radio("Go to", list(pages.keys()), key="nav")
-
-# # Set the query parameters based on the sidebar selection
-# st.experimental_set_query_params(subpage=selection)
-
-# # Handle navigation
-# navigate()
-
-# # Display the current subpage
-# st.sidebar.write(f"Current page: {st.session_state.current_page}")
+if cur_clicked_button is not None:
+    is_clicked_twice = cur_clicked_button == prev_clicked_button
+    if not is_clicked_twice:
+        page = topic_page_manager.get_page_by_name(cur_clicked_button)
+        st.markdown("---")
+        st.markdown(page.content)
+    else:
+        update_clicked_button_state(None)

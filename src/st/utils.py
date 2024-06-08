@@ -1,28 +1,42 @@
 import streamlit as st
-from typing import Dict, List, Tuple
+from typing import Any, Dict, List, Tuple
 import yaml
 import os
 from dataclasses import dataclass
+from logzero import logger
 
-PAGES_FOLDER = "pages"
-MARKDOWN_FOLDER = os.path.join("data", "topics")
+MARKDOWN_FOLDER = os.path.join("content", "topics")
 MAX_NUMB_TOPICS_PER_ROW = 5
+MAX_CHARACTER_IN_TOPIC_NAME = 15
 
 
 @dataclass
 class TopicPage:
+    name: str
+    title: str
+    icon: str
+    content: str
     url: str
-    page_name: str
-    page_content: str
 
-    def get_page_title(self) -> str:
-        return self.page_name.split(" ")[1]
+    @classmethod
+    def parse_from_markdown_file_path(cls, file_path: str):
+        url = file_path
+        name = os.path.splitext(os.path.basename(file_path))[0]
+        title, icon = name[0], name[1:]
+        content = load_markdown_file_content(file_path)
+        return cls(name, title, icon, content, url)
+
+    def get_title(self) -> str:
+        return self.title
 
     def get_icon(self) -> str:
-        return self.page_name.split(" ")[0]
+        return self.icon
 
     def __str__(self):
-        return f"url: {self.url} | page_name: {self.page_name} | page_content: {self.page_content[:20]}"
+        output_str = (
+            f"name: {self.name}" + f"url: {self.url}" + f"content: {self.content[:10]}"
+        )
+        return output_str
 
     def __hash__(self):
         return hash(self.page_name)
@@ -33,39 +47,67 @@ class TopicPage:
         return NotImplemented
 
 
-def generate_topic_pages_info_list_from_pages_folder() -> Tuple[Dict, List]:
+class TopicPageManager:
+    def __init__(self):
+        self.name_page_mapping = dict()
 
-    def parse_python_file_name_to_TopicPage(python_file_name: str) -> TopicPage:
-        url = os.path.join(PAGES_FOLDER, python_file_name)
-        page_name = os.path.splitext(python_file_name)[0].replace("_", " ")
-        markdown_file_name = python_file_name.replace("py", "md")
-        markdown_file_path = os.path.join(MARKDOWN_FOLDER, markdown_file_name)
-        page_content = load_page_content_from_markdown(markdown_file_path)
-        return TopicPage(url, page_name, page_content)
+    def add_page(self, page: TopicPage) -> None:
+        self.name_page_mapping[page.name] = page
 
-    page_name_to_topic_page_map = dict()
-    topic_page_list = list()
-    python_file_name_list = [path for path in os.listdir(PAGES_FOLDER) if ".py" in path]
-    for python_file_name in python_file_name_list:
-        topic_page = parse_python_file_name_to_TopicPage(python_file_name)
-        page_name_to_topic_page_map[topic_page.page_name] = topic_page
-        topic_page_list.append(topic_page)
+    def get_page_by_name(self, page_name):
+        return self.name_page_mapping.get(page_name, None)
 
-    return page_name_to_topic_page_map, topic_page_list
+    def get_page_list(self):
+        return list(self.name_page_mapping.keys())
 
 
-def display_topic_shortcuts(topic_page_list: List):
-    topic_page_is_clicked_dict = dict()
-    for page_index, topic_page in enumerate(topic_page_list):
+def get_TopicPageManager() -> Tuple[Dict, List]:
+
+    topic_page_manager = TopicPageManager()
+    markdown_file_path_list = get_file_paths_from_folder(MARKDOWN_FOLDER)
+    logger.info(f"Scanned markdown files: {markdown_file_path_list}")
+    for file_path in markdown_file_path_list:
+        topic_page = TopicPage.parse_from_markdown_file_path(file_path)
+        logger.info(f"Page loaded: {topic_page}")
+        topic_page_manager.add_page(topic_page)
+
+    return topic_page_manager
+
+
+def set_variable_in_session_state(variable: str, value: Any):
+    st.session_state[variable] = value
+
+
+def get_variable_in_session_state(variable: str):
+    return st.session_state.get(variable, None)
+
+
+def update_clicked_button_state(button_key: str):
+    prev_clicked_button = get_variable_in_session_state("cur_clicked_button")
+    set_variable_in_session_state("prev_clicked_button", prev_clicked_button)
+    set_variable_in_session_state("cur_clicked_button", button_key)
+
+
+def display_topic_buttons(pages: List):
+
+    page_isClicked_mapping = dict()
+    for page_index, page in enumerate(pages):
         is_new_row = page_index % MAX_NUMB_TOPICS_PER_ROW == 0
         col_index = page_index % MAX_NUMB_TOPICS_PER_ROW
         if is_new_row:
             cols = st.columns(MAX_NUMB_TOPICS_PER_ROW)
         with cols[col_index]:
-            button = st.button(topic_page.page_name)
-            topic_page_is_clicked_dict[topic_page] = button
+            button_label = f"{page[:MAX_CHARACTER_IN_TOPIC_NAME]}"
+            button = st.button(
+                button_label,
+                key=button_label,
+                use_container_width=True,
+                on_click=update_clicked_button_state,
+                args=[button_label],
+            )
+            page_isClicked_mapping[page] = button
 
-    return topic_page_is_clicked_dict
+    return page_isClicked_mapping
 
 
 def load_topic_page_content(page_name: str) -> None:
@@ -80,7 +122,7 @@ def load_topic_page_content(page_name: str) -> None:
         st.markdown(topic_page.page_content)
 
 
-def load_page_content_from_markdown(file_path: str) -> str:
+def load_markdown_file_content(file_path: str) -> str:
     """
     Loads the content of a Markdown file from the given file path.
 
@@ -99,6 +141,10 @@ def load_yaml(yaml_file_path: str) -> Dict:
     with open(yaml_file_path, "r", encoding="utf-8") as file:
         data = yaml.safe_load(file)
     return data
+
+
+def get_file_paths_from_folder(folder_path: str):
+    return [os.path.join(folder_path, f) for f in os.listdir(folder_path)]
 
 
 def write_line_break(numb_lines: int = 1):
