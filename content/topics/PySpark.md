@@ -68,10 +68,28 @@ def create_table(spark, table_location, table_name, list_of_tuple, db_name, part
             LOCATION `{table_location}`
         """
 
-    print (create_table_stmt)
     spark.sql(create_table_stmt)
+
+def refresh_table(spark, table_name, db_name, partitioned=False):
+    refresh_table_stmt = f"REFRESH TABLE {db_name}.{table_name}"
+    spark.sql(refresh_table_stmt)
+    if partitioned:
+        repair_table_stmt = f"MSCK REPAIR TABLE {db_name}.{table_name}"
+        spark.sql(repair_table_stmt)
+
+def drop_table(spark, table_name, db_name):
+    drop_table_stmt = f"DROP TABLE IF EXISTS {db_name}.{table_name}"
+    spark.sql(drop_table_stmt)
 ```
 
+Write to parquet with multiple partitions
+```python
+# do not have a hive table
+spark_df.write.mode("overwrite").partitionBy("ds").parquet("parquet_file_path")
+
+# have a hive table
+spark_df.write.format("parquet").mode("overwrite").partitionBy(partition_col).saveAsTable("<db_name>.<table_name>")
+```
 
 Read Hive table with Spark & Presto connection via JDBC
 ```python
@@ -87,6 +105,17 @@ df_jdbc = spark.read.jdbc(
     properties=jdbc_properties,
 )
 df_jdbc.show()
+```
+
+Check the existence of a table
+```python
+spark.catalog.listTables("<db_name>")
+```
+
+Get metadata from a Hive table
+```python
+table_metadata = spark.sql("DESCRIBE FORMATTED db.table_name")
+table_metadata.show(truncate=False)
 ```
 
 

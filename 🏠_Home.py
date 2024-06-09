@@ -91,6 +91,7 @@ if cur_clicked_button is not None:
     if not is_clicked_twice:
         page = topic_page_manager.get_page_by_name(cur_clicked_button)
         write_horizontal_line()
+        st.header(page.name)
         st.markdown(page.content, unsafe_allow_html=True)
     else:
         update_clicked_button_state(None)

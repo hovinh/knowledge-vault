@@ -23,6 +23,9 @@ virtualenv <env-name>
 source <env-name>/bin/activate
 
 # conda
+conda create --name env_name python=3.9
+conda install <package-name>
+python -m ipykernel install --user --name=<env-name> 
 ```
 
 Troubleshooting in script execution
@@ -35,3 +38,4 @@ Package Note
 | -------- | -------- |
 | `pip-tools`| version 7.0.0 is stable|
 | `black`| code formatter|
+| `mlflow`| model version control|
