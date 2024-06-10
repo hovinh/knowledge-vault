@@ -55,7 +55,7 @@ if search_text != "":
     displayed_pages = list()
     for page_name in all_pages:
         topic_page = topic_page_manager.get_page_by_name(page_name)
-        has_text_matched = search_text in topic_page.content.lower()
+        has_text_matched = topic_page.query_exact_match(search_text)
         if has_text_matched:
             displayed_pages.append(page_name)
 

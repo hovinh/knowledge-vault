@@ -34,6 +34,9 @@ class TopicPage:
         )
         return output_str
 
+    def query_exact_match(self, text: str):
+        return text.lower() in self.content.lower()
+
 
 class TopicPageManager:
     """
