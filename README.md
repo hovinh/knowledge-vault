@@ -4,6 +4,11 @@
 - Python 3.9
 - Packages: requirements.txt
 - Install a virtual env with requirements.txt
+```bash
+conda create --name knowledge-vault python=3.9
+conda activate knowledge-vault
+conda install --file requirements.txt
+```
 
 ## Local Execution
 ```bash
