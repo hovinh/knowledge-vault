@@ -42,7 +42,7 @@ Package Note
 
 #### Demo
 
-For quick prototyping, use Jupyter Notebook widget, gradio, streamlit, plotly.
+For quick prototyping, use Jupyter Notebook widget (ipywidgets), gradio, streamlit, plotly.
 
 
 #### Class
