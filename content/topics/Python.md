@@ -39,3 +39,13 @@ Package Note
 | `pip-tools`| version 7.0.0 is stable|
 | `black`| code formatter|
 | `mlflow`| model version control|
+
+#### Demo
+
+For quick prototyping, use Jupyter Notebook widget, gradio, streamlit, plotly.
+
+
+#### Class
+
+- decorator @dataclass to create a struct contain fields without specifying in __init__.
+- decorator @classmethod to convert a function into class method.

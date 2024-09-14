@@ -92,6 +92,21 @@ if cur_clicked_button is not None:
         page = topic_page_manager.get_page_by_name(cur_clicked_button)
         write_horizontal_line()
         st.header(page.name)
+        has_gist_urls = len(page.gist_urls) > 0
+        if has_gist_urls:
+            st.markdown("#### Gist Code Snippet\n")
+            for gist_item in page.gist_urls:
+                gist_name, gist_url = gist_item["name"], gist_item["url"]
+                st.markdown(f"**{gist_name}**")
+                st.components.v1.html(
+                    f"""
+                    <script src={gist_url}></script>
+                    """,
+                    width=None,
+                    height=None,
+                    scrolling=True,
+                )
+
         st.markdown(page.content, unsafe_allow_html=True)
     else:
         update_clicked_button_state(None)
