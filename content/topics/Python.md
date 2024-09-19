@@ -25,7 +25,17 @@ source <env-name>/bin/activate
 # conda
 conda create --name env_name python=3.9
 conda install <package-name>
+
+# Have pip-tools installed
+pip install pip-tools==7.0.0
+# Use requirements.in to keep track core packages
+# Build requirements.txt based on requirements.in
+pip-compile -v --rebuild -o requirements.txt
+pip-sync requirements.txt
+
+# jupyter notebook kernel
 python -m ipykernel install --user --name=<env-name> 
+jupyter kernelspec list # verify that kernel is installed
 ```
 
 Troubleshooting in script execution
@@ -42,7 +52,7 @@ Package Note
 
 #### Demo
 
-For quick prototyping, use Jupyter Notebook widget (ipywidgets), gradio, streamlit, plotly.
+For quick prototyping, use Jupyter Notebook widget (ipywidgets), gradio, streamlit, dash plotly.
 
 
 #### Class

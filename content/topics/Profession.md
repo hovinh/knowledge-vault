@@ -1,0 +1,21 @@
+#### Guideline
+
+- Communication:
+    - Know your audience.
+    - Answer: be firm and confident, don't answer with a question.
+    - If things are in progress, say so and why, don't feel pressured that they expect you always have everything on hand.
+    - Always speaks slowly and calmly.
+- POC:
+    - Clear about benefit of your proposal: new concept, pain point addressing, automation. How to prove them? (backtest, ...) 
+- Working/Learning:
+    - Do your job well and consistenly.
+    - Understand the dislike of your colleagues, turn their hostility around by convincing them with your work.
+    - Expand your comfort zone.
+    - Be curious about all aspects of your project, even the small things.
+    - When under pressure, takes a step back to consider all possibilities, avoid tunnel vision.
+    - Has an idea of what you want to grow into and self-reflect biannually.
+- Leadership:
+    - Only take the role if you can see project end-to-end with all interlinked components.
+- Pipeline:
+    - Know your data well: source, who maintains, frequency.
+    - When project timeline, have a good overview of dependency and careful when you conclude it's unrealistic. Keep pushing forward, and take care of yourself.
