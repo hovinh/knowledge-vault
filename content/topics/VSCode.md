@@ -49,6 +49,7 @@ Create **Anaconda Prompt Terminal Profile**:
 | indent-rainbow| highlight indentation|
 | Codeium| AI coding autocomplete and chat|
 | GitLens| Visualize Git-related attributes: code authorship...|
+| autoDocstring | python docstring generator |
 
 <br>
 

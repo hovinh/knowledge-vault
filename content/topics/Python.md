@@ -49,6 +49,7 @@ Package Note
 | `pip-tools`| version 7.0.0 is stable|
 | `black`| code formatter|
 | `mlflow`| model version control|
+| `pathlib`| get suffix, extension of file|
 
 #### Demo
 

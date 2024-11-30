@@ -1,21 +1,34 @@
 #### Guideline
-
-- Communication:
+-- Communication:
     - Know your audience.
     - Answer: be firm and confident, don't answer with a question.
     - If things are in progress, say so and why, don't feel pressured that they expect you always have everything on hand.
     - Always speaks slowly and calmly.
+    - Problem, impact, solution.
 - POC:
     - Clear about benefit of your proposal: new concept, pain point addressing, automation. How to prove them? (backtest, ...) 
 - Working/Learning:
-    - Do your job well and consistenly.
+    - Do not be afraid to ask.
+    - Know the prerequisites of your task, be curious about all aspects of your project, even the small things.. 
+    - Know the company end-to-end process, e.g. CR.
+    - Expand your comfort zone, your boundary, including other scopes. This could be set back in short term, but rewarding in the long term. You have better problem solving skills thanks to this exposal.
+    - Focus on long standing core skills and soft skills.
+    - Have checklist for everything.
+    - Set your guiding principles.
+    - Do your job well and consistently.
     - Understand the dislike of your colleagues, turn their hostility around by convincing them with your work.
-    - Expand your comfort zone.
-    - Be curious about all aspects of your project, even the small things.
     - When under pressure, takes a step back to consider all possibilities, avoid tunnel vision.
     - Has an idea of what you want to grow into and self-reflect biannually.
+    - Unless the person needs help or show willingness, not openly share your knowledge to avoid overwhelming them with a big personality.
+    - Don't be emotional when making decision.
 - Leadership:
     - Only take the role if you can see project end-to-end with all interlinked components.
+    - Don't assign people directly unless really needed, ask for volunteer first.
+- Philosophy:
+    - Be a creator: self-sufficient, driven by their own motivations and ideas, and do not serve others or seek validation from them. Seek greatness for its own sake, not to be seen as great.
+    - You must learn not to fear the world, not to be bound by it as you are now, and never to be hurt by it again. It won't matter because things can only sink to a certain point.
+    - Focus solely on doing your own work, in your own way, even if it meant being torn apart in the process. 
+    - In moments of hardship, I shall ask myself: what would Roark do?
 - Pipeline:
     - Know your data well: source, who maintains, frequency.
     - When project timeline, have a good overview of dependency and careful when you conclude it's unrealistic. Keep pushing forward, and take care of yourself.
