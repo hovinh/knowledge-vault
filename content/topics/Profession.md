@@ -9,6 +9,9 @@
     - Clear about benefit of your proposal: new concept, pain point addressing, automation. How to prove them? (backtest, ...) 
 - Working/Learning:
     - Do not be afraid to ask.
+    - Exception handling: consult the more experienced.
+    - Responsible with your career.
+    - Dare to make decision (based on data) and own your mistake.
     - Know the prerequisites of your task, be curious about all aspects of your project, even the small things.. 
     - Know the company end-to-end process, e.g. CR.
     - Expand your comfort zone, your boundary, including other scopes. This could be set back in short term, but rewarding in the long term. You have better problem solving skills thanks to this exposal.
@@ -21,9 +24,13 @@
     - Has an idea of what you want to grow into and self-reflect biannually.
     - Unless the person needs help or show willingness, not openly share your knowledge to avoid overwhelming them with a big personality.
     - Don't be emotional when making decision.
+
 - Leadership:
     - Only take the role if you can see project end-to-end with all interlinked components.
     - Don't assign people directly unless really needed, ask for volunteer first.
+    - New idea/change need to present and buy off before apply it. Be considerate because people may have good reason to oppose change.
+- Job:
+    - Company should make money, a stable and long term plan of development, and culture.
 - Philosophy:
     - Be a creator: self-sufficient, driven by their own motivations and ideas, and do not serve others or seek validation from them. Seek greatness for its own sake, not to be seen as great.
     - You must learn not to fear the world, not to be bound by it as you are now, and never to be hurt by it again. It won't matter because things can only sink to a certain point.
