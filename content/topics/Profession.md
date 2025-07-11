@@ -1,5 +1,5 @@
 #### Guideline
--- Communication:
+- Communication:
     - Know your audience.
     - Answer: be firm and confident, don't answer with a question.
     - If things are in progress, say so and why, don't feel pressured that they expect you always have everything on hand.
@@ -24,11 +24,39 @@
     - Has an idea of what you want to grow into and self-reflect biannually.
     - Unless the person needs help or show willingness, not openly share your knowledge to avoid overwhelming them with a big personality.
     - Don't be emotional when making decision.
-
+    - Before judging someone, understand your personality (MBTI) and theirs, question if it could come from your misunderstanding/mis-interaction, then focus on solving the problem with the processes and tools.
+        - MBTI: self-estimate + reported type then assess to find best fit profile. Mine is ENTJ.
+        - Extraversion (E) or Introversion (I): where we focus our attention and get energy.
+        - Sensing (S) or Intuition (N): the way we take in information and the kind of information we like and trust.
+        - Thinking (T) or Feeling (F): the way we make decisions.
+        - Judging (J) or Perceiving (O): out attitude toward the external world and how we orient ourselves to it.
 - Leadership:
     - Only take the role if you can see project end-to-end with all interlinked components.
     - Don't assign people directly unless really needed, ask for volunteer first.
     - New idea/change need to present and buy off before apply it. Be considerate because people may have good reason to oppose change.
+    - Work out the difference and find a common ground as team foundation.
+    - Team model:
+        - GRPI model: Goal, Role, Process, and Relationship.
+        - Tuckman's Team development model: Forming, Storming, Norming, Performing, Adjourning.
+        - Project Aristotle: Psychological safety, Dependability, Structure and Clarity, Meaning, Impact.
+        - Kolb Experiential Learning Cycle: Shared Experience, Process, Generalize, Apply. 
+    - Establish team norm with experiential learning - positive feedback loop.
+    - Provide Psychological safety within team.
+        - A shared belief that the team is safe for interpersonal risk-taking, a sense of confidence that the team will not embarrass, reject, or punish someone for speaking up, people are comfortable being themselves.
+        - 4 stages: Inclusion safety, Learner safety, Contributor safety, Challenger safety.
+        - Be gentle when talking with your teammates.
+        - Give equal attention to everyone.
+        - Be nice when receive feedback.
+        - Recognize team's contribution.
+        - Assume people are doing their best.
+        - Relate your vulnerability and admit your mistake.
+        - Listening with intent.
+    - Provide feedback with SBI (Situation, Behaviour, Impact). Focus on fact and value, not opinion and emotion.
+        - Don't say "you could have" (do not instruct), but "next time", what we can do better.
+        - Ask their solution before offering one and agreeing. Discuss possibilities.
+        - Focus on data: instead saying late, say arrive at what time, what can do differently.
+    - Karpman drama triangle.
+    - Get to know your member using the formula: FORD (Family, Occupation, Recreation, Dreams).
 - Job:
     - Company should make money, a stable and long term plan of development, and culture.
 - Philosophy:

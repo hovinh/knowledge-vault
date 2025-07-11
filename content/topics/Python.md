@@ -59,4 +59,5 @@ For quick prototyping, use Jupyter Notebook widget (ipywidgets), gradio, streaml
 #### Class
 
 - decorator @dataclass to create a struct contain fields without specifying in __init__.
+- use `pydantic` for schema control and parsing CLI arguments with proper typing.
 - decorator @classmethod to convert a function into class method.
